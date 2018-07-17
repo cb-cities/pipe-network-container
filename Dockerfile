@@ -13,9 +13,9 @@ dnf clean all
 # Coverage 
 RUN wget http://ftp.de.debian.org/debian/pool/main/l/lcov/lcov_1.11.orig.tar.gz && tar xf lcov_1.11.orig.tar.gz && make -C lcov-1.11/ install
 
-# Create a user cbgeo
-RUN useradd cbgeo
-USER cbgeo
+# Create a user cbcities
+RUN useradd cbcities
+USER cbcities
 
 # Create a research directory and clone git repo of pipe-network code
 RUN mkdir -p /home/cbcities/research && \
