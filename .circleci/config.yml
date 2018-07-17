@@ -1,0 +1,32 @@
+version: 2
+jobs:
+  build:
+    working_directory: /pipe-network
+    docker:
+      - image: docker:17.10.0-ce
+    steps:
+      - checkout
+      - setup_remote_docker
+      - restore_cache:
+          keys:
+            - v1-{{ .Branch }}
+          paths:
+            - /caches/pipe-network.tar
+      - run:
+          name: Load Docker image layer cache
+          command: |
+            set +o pipefail
+            docker load -i /caches/pipe-network.tar | true
+      - run:
+          name: Build application Docker image
+          command: |
+            docker build --cache-from=pipe-network -t pipe-network .
+      - run:
+          name: Save Docker image layer cache
+          command: |
+            mkdir -p /caches
+            docker save -o /caches/pipe-network.tar pipe-network
+      - save_cache:
+          key: v1-{{ .Branch }}-{{ epoch }}
+          paths:
+            - /caches/pipe-network.tar
