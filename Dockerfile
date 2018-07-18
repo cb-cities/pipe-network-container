@@ -11,7 +11,7 @@ RUN dnf update -y && \
 dnf clean all
 
 # Coverage 
-RUN wget http://ftp.de.debian.org/debian/pool/main/l/lcov/lcov_1.11.orig.tar.gz && tar xf lcov_1.11.orig.tar.gz && make -C lcov-1.11/ install
+RUN wget http://ftp.de.debian.org/debian/pool/main/l/lcov/lcov_1.13.orig.tar.gz && tar xf lcov_1.13.orig.tar.gz && make -C lcov-1.13/ install
 
 # Create a user cbcities
 RUN useradd cbcities
