@@ -11,6 +11,7 @@
 * CMake 3
 * Eigen 3.
 * GCC 7
+* Intel MKL
 * Vim
 
 # Using the docker image

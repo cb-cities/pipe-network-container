@@ -10,6 +10,13 @@ RUN dnf update -y && \
                    voro++ voro++-devel vtk vtk-devel wget && \
 dnf clean all
 
+
+# Install MKL
+RUN dnf config-manager --add-repo https://yum.repos.intel.com/mkl/setup/intel-mkl.repo && \
+    rpm --import https://yum.repos.intel.com/intel-gpg-keys/GPG-PUB-KEY-INTEL-SW-PRODUCTS-2019.PUB && \
+    dnf install -y intel-mkl
+
+
 # Coverage 
 # RUN wget http://ftp.de.debian.org/debian/pool/main/l/lcov/lcov_1.13.orig.tar.gz && tar xf lcov_1.13.orig.tar.gz && make -C lcov-1.13/ install
 
