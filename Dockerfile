@@ -16,6 +16,8 @@ RUN dnf config-manager --add-repo https://yum.repos.intel.com/mkl/setup/intel-mk
     rpm --import https://yum.repos.intel.com/intel-gpg-keys/GPG-PUB-KEY-INTEL-SW-PRODUCTS-2019.PUB && \
     dnf install -y intel-mkl
 
+RUN source /opt/intel/compilers_and_libraries/linux/bin/compilervars.sh -arch intel64 -platform linux
+
 
 # Coverage 
 # RUN wget http://ftp.de.debian.org/debian/pool/main/l/lcov/lcov_1.13.orig.tar.gz && tar xf lcov_1.13.orig.tar.gz && make -C lcov-1.13/ install
@@ -31,5 +33,7 @@ RUN mkdir -p /home/cbcities/research && \
 
 # Done
 WORKDIR /home/cbgeo/research/pipe-network
+
+RUN source /opt/intel/compilers_and_libraries/linux/bin/compilervars.sh -arch intel64 -platform linux
 
 RUN /bin/bash "$@"
